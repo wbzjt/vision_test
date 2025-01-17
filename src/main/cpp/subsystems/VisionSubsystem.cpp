@@ -3,17 +3,13 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/VisionSubsystem.h"
+#include <iostream>
 
 VisionSubsystem::VisionSubsystem() {
-  // Implementation of subsystem constructor goes here.
-
-    // 获取默认的 NetworkTable 实例
-  // m_ntInst = nt::NetworkTableInstance::GetDefault();
-
-  // // 获取或创建一个名为 "myTable" 的表格
-  // m_table = m_ntInst.GetTable("SmartDashboard");
-  // test_topic = m_table->GetTopic("btn_id");
-
+  // 将smartdashboard的entry赋值给子系统的entry
+  AprilTag_entry = frc::SmartDashboard::GetEntry("AprilTag");
+  Chassis_entry = frc::SmartDashboard::GetEntry("Chassis");
+  Vision_entry = frc::SmartDashboard::GetEntry("Vision");
 
 }
 
@@ -29,17 +25,39 @@ bool VisionSubsystem::VisionCondition() {
 }
 
 void VisionSubsystem::Periodic() {
-  // Implementation of subsystem periodic method goes here.
+  try {
+  // 根据entry更新信息
+  tag_ID = AprilTag_entry.GetDouble(0);
+  auto tagPosVector = Vision_entry.GetDoubleArray(std::vector<double>{0.0, 0.0, 0.0});
+  for (uint8_t i = 0; i <= 2 ; i++) {
+    tag_pos[i] = tagPosVector[i];
+  }
   // 接收消息
   test1 += 0.001;
+  test_array[0] += 0.001;
+  test_array[1] += 0.001;
+  test_array[2] += 0.001;
+  // tag_pos[0] += 0.001;
   // test_value = m_table->GetEntry("btn_id").GetDouble(0); 
 
-  test_value = frc::SmartDashboard::GetEntry("AprilTag_ID").GetDouble(0.0);
-  frc::SmartDashboard::PutNumber("test_value", test_value);
+  // frc::SmartDashboard::PutNumber("tag_ID", tag_ID);
   frc::SmartDashboard::PutNumber("test1", test1);
+
+  std::vector<double> test_array = {0.1, 0.1, 0.1};
+  frc::SmartDashboard::PutNumber("test2", test_array[0]);
+  frc::SmartDashboard::PutNumber("tag_pos", tag_pos[2]);
+
+
+  // frc::SmartDashboard::PutNumberArray("test_array", test_array);
+
+  } catch (const std::exception& e) {
+    std::cout << "Subsystem Initialization Failed: " << e.what() << std::endl;
+}
 
 }
 
 void VisionSubsystem::SimulationPeriodic() {
+
   // Implementation of subsystem simulation periodic method goes here.
+
 }

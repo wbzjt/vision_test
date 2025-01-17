@@ -1,0 +1,107 @@
+{
+  "Clients": {
+    "open": true
+  },
+  "Connections": {
+    "open": true
+  },
+  "NetworkTables Settings": {
+    "mode": "Client (NT4)",
+    "serverTeam": "8011"
+  },
+  "Server": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    }
+  },
+  "SmartDashboard-NT3@172.22.11.1:57238": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    },
+    "open": true
+  },
+  "outlineviewer@2": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    },
+    "open": true
+  },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:53244": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    },
+    "open": true
+  },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:54022": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    },
+    "open": true
+  },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:54184": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    }
+  },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:54346": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    },
+    "open": true
+  },
+  "retained": {
+    "SmartDashboard": {
+      "double[]##v_/SmartDashboard/Vision": {
+        "open": true
+      },
+      "open": true
+    }
+  },
+  "shuffleboard@1": {
+    "Publishers": {
+      "open": true
+    },
+    "open": true
+  },
+  "transitory": {
+    "FMSInfo": {
+      "open": true
+    },
+    "LiveWindow": {
+      "open": true
+    },
+    "Shuffleboard": {
+      ".metadata": {
+        "open": true
+      },
+      "open": true
+    },
+    "SmartDashboard": {
+      "double[]##v_/SmartDashboard/test_array": {
+        "open": true
+      },
+      "open": true
+    }
+  }
+}

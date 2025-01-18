@@ -7,9 +7,8 @@
 
 VisionSubsystem::VisionSubsystem() {
   // 将smartdashboard的entry赋值给子系统的entry
-  AprilTag_entry = frc::SmartDashboard::GetEntry("AprilTag");
   Chassis_entry = frc::SmartDashboard::GetEntry("Chassis");
-  Vision_entry = frc::SmartDashboard::GetEntry("Vision");
+  AprilTag_entry = frc::SmartDashboard::GetEntry("AprilTag_ID");
 
 }
 
@@ -26,32 +25,15 @@ bool VisionSubsystem::VisionCondition() {
 
 void VisionSubsystem::Periodic() {
   try {
-  // 根据entry更新信息
-  tag_ID = AprilTag_entry.GetDouble(0);
-  auto tagPosVector = Vision_entry.GetDoubleArray(std::vector<double>{0.0, 0.0, 0.0});
-  for (uint8_t i = 0; i <= 2 ; i++) {
-    tag_pos[i] = tagPosVector[i];
-  }
+
   // 接收消息
-  test1 += 0.001;
-  test_array[0] += 0.001;
-  test_array[1] += 0.001;
-  test_array[2] += 0.001;
-  // tag_pos[0] += 0.001;
-  // test_value = m_table->GetEntry("btn_id").GetDouble(0); 
-
-  // frc::SmartDashboard::PutNumber("tag_ID", tag_ID);
-  frc::SmartDashboard::PutNumber("test1", test1);
-
-  std::vector<double> test_array = {0.1, 0.1, 0.1};
-  frc::SmartDashboard::PutNumber("test2", test_array[0]);
-  frc::SmartDashboard::PutNumber("tag_pos", tag_pos[2]);
-
-
-  // frc::SmartDashboard::PutNumberArray("test_array", test_array);
+  GetPose_V();
+  GetTag_V();
+  frc::SmartDashboard::PutNumber("AprilTag_robot", tag_ID);
+  frc::SmartDashboard::PutNumber("chassis_pos1", chassis_pos.X().value());
 
   } catch (const std::exception& e) {
-    std::cout << "Subsystem Initialization Failed: " << e.what() << std::endl;
+    std::cout << "VisionSubsystem Periodic Failed: " << e.what() << std::endl;
 }
 
 }
@@ -60,4 +42,21 @@ void VisionSubsystem::SimulationPeriodic() {
 
   // Implementation of subsystem simulation periodic method goes here.
 
+}
+
+frc::Pose2d VisionSubsystem::GetPose_V() {
+  // 获取entry的double数组
+    
+    auto tagPosVector = Chassis_entry.GetDoubleArray(std::vector<double>{0.0, 0.0, 0.0});
+    chassis_pos = frc::Pose2d(units::meter_t{tagPosVector[0]}, 
+                      units::meter_t{tagPosVector[1]}, 
+                      units::degree_t{tagPosVector[2]});
+
+    return chassis_pos;
+}
+
+double VisionSubsystem::GetTag_V() {
+  // 根据entry更新信息
+  tag_ID = AprilTag_entry.GetDouble(101);
+  return tag_ID;
 }

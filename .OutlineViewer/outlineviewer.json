@@ -9,6 +9,9 @@
     "mode": "Client (NT4)",
     "serverTeam": "8011"
   },
+  "Persistent Values": {
+    "open": false
+  },
   "Server": {
     "Publishers": {
       "open": true
@@ -27,9 +30,15 @@
     "open": true
   },
   "outlineviewer@2": {
+    "open": true
+  },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:50113": {
     "Publishers": {
       "open": true
     },
+    "open": true
+  },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:50632": {
     "Subscribers": {
       "open": true
     },
@@ -70,8 +79,23 @@
     },
     "open": true
   },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:55715": {
+    "Publishers": {
+      "open": true
+    },
+    "open": true
+  },
+  "pynetworktables 2021.0.0-NT3@10.80.11.211:58923": {
+    "Publishers": {
+      "open": true
+    },
+    "open": true
+  },
   "retained": {
     "SmartDashboard": {
+      "double[]##v_/SmartDashboard/Chassis": {
+        "open": true
+      },
       "double[]##v_/SmartDashboard/Vision": {
         "open": true
       },
@@ -81,8 +105,7 @@
   "shuffleboard@1": {
     "Publishers": {
       "open": true
-    },
-    "open": true
+    }
   },
   "transitory": {
     "FMSInfo": {

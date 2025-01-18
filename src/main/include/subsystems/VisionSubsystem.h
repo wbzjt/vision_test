@@ -9,6 +9,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <networktables/GenericEntry.h>
 #include <frc/DriverStation.h>
+#include <frc/geometry/Pose2d.h>
 class VisionSubsystem : public frc2::SubsystemBase {
  public:
   VisionSubsystem();
@@ -37,14 +38,23 @@ class VisionSubsystem : public frc2::SubsystemBase {
    */
   void SimulationPeriodic() override;
 
+  /**
+   * @brief 获取视觉传来的底盘当前全局位置
+   * 
+   */
+  frc::Pose2d GetPose_V();
+
+  /**
+   * @brief 获取视觉识别的AprilTag名称及AprilTag位置,初始化默认为100
+   * 
+   */
+  double GetTag_V();
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-    //定义Networktables的实例
-  // nt::NetworkTableInstance m_ntInst;
-  // std::shared_ptr<nt::NetworkTable> m_table;
-  // std::shared_ptr<nt::DoubleTopic> test_topic;
+
 
   /* nano的摄像机识别的数据传输topic */
   nt::NetworkTableEntry  AprilTag_entry;
@@ -56,8 +66,7 @@ class VisionSubsystem : public frc2::SubsystemBase {
 
 
   // 摄像头的识别结果
-  double tag_pos[3] = {0.0, 0.0, 0.0}; // AprilTag识别的目标全局位置
-  double chassis_pos[3] = {0.0, 0.0, 0.0}; // 底盘的当前全局位置
+  frc::Pose2d chassis_pos = frc::Pose2d(0_m, 0_m, frc::Rotation2d(90_deg)); // 底盘的当前全局位置
   float tag_ID; // AprilTag的识别ID
 
   // 触摸屏的传输结果
@@ -65,7 +74,4 @@ class VisionSubsystem : public frc2::SubsystemBase {
   double com_flag = 0.0; // 触摸屏传输的标志位
 
 
-  double test_value = 0.0;
-  std::vector<double> test_array = {0.1, 0.1, 0.1};
-  double test1 = 0.001;
 };

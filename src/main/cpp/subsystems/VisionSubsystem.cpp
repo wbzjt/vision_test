@@ -57,6 +57,7 @@ frc::Pose2d VisionSubsystem::GetPose_V() {
 
 double VisionSubsystem::GetTag_V() {
   // 根据entry更新信息
-  tag_ID = AprilTag_entry.GetDouble(101);
+  tag_ID = AprilTag_entry.GetDouble(100);
+
   return tag_ID;
 }
